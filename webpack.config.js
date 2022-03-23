@@ -11,7 +11,7 @@ const isProduction = process.env.NODE_ENV === "production";
 const stylesHandler = "style-loader";
 
 const config = {
-  devtool: isProduction ? false : "eval-cheap-module-source-map",
+  devtool: isProduction ? "source-map" : "eval-cheap-module-source-map",
   experiments: {
     outputModule: true,
   },
@@ -36,14 +36,18 @@ const config = {
       isModuleBuild: true,
       targetDir: path.resolve("./dist"),
     }),
-    new SentryCliPlugin({
-      project: "my-sentry-test",
-      authToken:
-        "d56e3b0ae5e641a9a1db8f229214a5a153a1b78f55cf4de38670fcd6b124823a",
-      include: "./src",
-      ignore: ["node_modules", "webpack.config.js"],
-      configFile: "sentry.properties",
-    }),
+    ...[
+      isProduction &&
+        new SentryCliPlugin({
+          project: "shoplazza-pm",
+          org: "my-sentry-test",
+          authToken:
+            "d56e3b0ae5e641a9a1db8f229214a5a153a1b78f55cf4de38670fcd6b124823a",
+          include: ".",
+          ignore: ["node_modules", "webpack.config.js"],
+          configFile: "sentry.properties",
+        }),
+    ].filter(Boolean),
   ],
   module: {
     rules: [
