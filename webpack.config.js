@@ -33,9 +33,9 @@ const config = {
   },
   plugins: [
     ...[!isProduction && new ReactRefreshPlugin()].filter(Boolean),
-      new webpack.DefinePlugin({
-          RELEASE_REVISION: JSON.stringify(revision)
-      }),
+    new webpack.DefinePlugin({
+      RELEASE_REVISION: JSON.stringify(revision),
+    }),
     new HtmlWebpackPlugin({
       template: "index.html",
     }),
@@ -56,6 +56,7 @@ const config = {
           ignore: ["node_modules", "webpack.config.js"],
           configFile: "sentry.properties",
           urlPrefix: "~/",
+          ext: ["js", "mjs","map"],
         }),
     ].filter(Boolean),
   ],
