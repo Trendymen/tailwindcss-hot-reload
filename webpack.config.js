@@ -43,9 +43,10 @@ const config = {
           org: "my-sentry-test",
           authToken:
             "d56e3b0ae5e641a9a1db8f229214a5a153a1b78f55cf4de38670fcd6b124823a",
-          include: ".",
+          include: "dist",
           ignore: ["node_modules", "webpack.config.js"],
           configFile: "sentry.properties",
+          urlPrefix: "~/",
         }),
     ].filter(Boolean),
   ],
