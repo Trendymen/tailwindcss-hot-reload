@@ -5,6 +5,12 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const ModernModePlugin = require("./modernPlugin");
 const ReactRefreshPlugin = require("@pmmmwh/react-refresh-webpack-plugin");
 const SentryCliPlugin = require("@sentry/webpack-plugin");
+const webpack = require("webpack");
+
+const revision = require("child_process")
+  .execSync("git rev-parse HEAD")
+  .toString()
+  .trim();
 
 const isProduction = process.env.NODE_ENV === "production";
 
@@ -27,6 +33,9 @@ const config = {
   },
   plugins: [
     ...[!isProduction && new ReactRefreshPlugin()].filter(Boolean),
+      new webpack.DefinePlugin({
+          RELEASE_REVISION: JSON.stringify(revision)
+      }),
     new HtmlWebpackPlugin({
       template: "index.html",
     }),

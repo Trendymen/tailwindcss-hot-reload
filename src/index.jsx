@@ -11,6 +11,7 @@ Sentry.init({
   // of transactions for performance monitoring.
   // We recommend adjusting this value in production
   tracesSampleRate: 1.0,
+  release: RELEASE_REVISION,
 });
 
 const App = React.lazy(() => import("./App.jsx"));

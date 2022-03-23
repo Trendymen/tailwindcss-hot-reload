@@ -1,10 +1,11 @@
 export const DynamicComponent = () => {
+    const a = {}
   return (
     <div>
       <button
         className={"border"}
         onClick={() => {
-          throw new Error("sourcemap DynamicComponent error");
+          a.b();
         }}
       >
         throw error
