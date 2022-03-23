@@ -1,0 +1,2 @@
+(self.webpackChunkmy_webpack_project=self.webpackChunkmy_webpack_project||[]).push([[143],{143:(e,r,n)=>{n.r(r),n.d(r,{DynamicComponent:()=>o});var c=n(823),o=function(){var e={};return(0,c.jsx)("div",{children:(0,c.jsx)("button",{className:"border",onClick:function(){e.b()},children:"throw error"})})}}}]);
+//# sourceMappingURL=143.mjs.map
